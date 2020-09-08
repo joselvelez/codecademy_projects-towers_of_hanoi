@@ -44,27 +44,26 @@ class Stack:
         return self.name
 
     def print_items(self):
-        if self.is_empty():
-            return "This stack is empty!"
-        else:
-            stack_list = []
-            current_node = self.top_node
-            while current_node:
-                stack_list.append(current_node.get_value())
-                current_node = current_node.get_next_node()
-            print("{name} Stack: {stack}".format(name=self.get_name(), stack=stack_list))
+        pointer = self.top_node
+        print_list = []
+        while pointer:
+            print_list.append(pointer.get_value())
+            pointer = pointer.get_next_node()
+        print_list.reverse()
+        print("{name} Stack: {stack}".format(name=self.get_name(), stack=print_list))
 
 ''' Test Code '''
-test_stack = Stack('test')
-test_stack.push(10)
-test_stack.push(20)
-test_stack.push(30)
-test_stack.push(40)
-
-print(test_stack.peek())
-print(test_stack.is_empty())
-print(test_stack.has_space())
-print(test_stack.get_size())
-test_stack.print_items()
-test_stack.pop()
-test_stack.print_items()
+# test_stack = Stack('test')
+# test_stack.push(3)
+# test_stack.push(2)
+# test_stack.push(1)
+# test_stack.push(40)
+# new_stack = Stack('new')
+# print(test_stack.peek())
+# print(test_stack.is_empty())
+# print(test_stack.has_space())
+# print(test_stack.get_size())
+# test_stack.print_items()
+# new_stack.print_items()
+# test_stack.pop()
+# test_stack.print_items()
