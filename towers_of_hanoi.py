@@ -6,6 +6,11 @@ The game follows three rules:
     2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.
     3. No disk may be placed on top of a smaller disk.
 '''
+
+'''
+This version adopts an example given by a user on the codecademy site. 
+URL: https://discuss.codecademy.com/t/towers-of-hanoi-graphic-well-ascii-graphic-output/404060
+'''
 from stack import Stack
 
 print("\nLet's play Towers of Hanoi!!!")
@@ -51,12 +56,34 @@ def get_input():
 
 # Play the game
 
+def print_pix():
+    # render current state as a list of lists of values
+    show_list = []
+    for stack in stacks:
+        show_list.append(stack.print_items())
+    # pad lists with leading zeros so all are length = num_disks
+    for idx, item in enumerate(show_list):
+        new_list = [0 for i in range(num_disks -len(item))]
+        show_list[idx] = new_list + show_list[idx]
+    # print num_disks lines, each comprised of
+    # ... three columns, corresponding to "L", "M", and "R".
+    # ... Each column will consist of a number of underscores
+    # ... corresponding to the value of the node at that level.
+    for i in range(num_disks):
+        for item in show_list:
+            mult = item[i]
+            s = "_" * mult
+            print("{:10}".format(s), end = '')
+        print()
+    print("{:10}{:10}{:10}\n".format("L","M","R"))
+
 num_user_moves = 0
 
 while right_stack.get_size() != num_disks:
     print("\n\n...Current Stacks...")
-    for stack in stacks:
-        stack.print_items()
+    print_pix()
+    # for stack in stacks:
+    #     stack.print_items()
     
     while True:
         print("\nWhich stack do you want to move from?\n")
@@ -76,6 +103,6 @@ while right_stack.get_size() != num_disks:
 
 print("\nYou completed the game in {moves} moves, and the optimal number of moves is {optimal_moves}.".format(moves=num_user_moves, optimal_moves=optimal_moves))
 
-''' Test / Debut Statements '''
+''' Test / Debug Statements '''
 #print(stacks)
 #left_stack.print_items()

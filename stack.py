@@ -49,8 +49,9 @@ class Stack:
         while pointer:
             print_list.append(pointer.get_value())
             pointer = pointer.get_next_node()
-        print_list.reverse()
-        print("{name} Stack: {stack}".format(name=self.get_name(), stack=print_list))
+        return print_list
+        # print_list.reverse()
+        # print("{name} Stack: {stack}".format(name=self.get_name(), stack=print_list))
 
 ''' Test Code '''
 # test_stack = Stack('test')
